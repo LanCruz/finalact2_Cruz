@@ -34,7 +34,7 @@ const NavMenuItems = ({ className }: NavMenuItemsProps) => (
   </div>
 );
 
-export function LpNavbar1() {
+function LpNavbar1() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
@@ -77,7 +77,7 @@ export function LpNavbar1() {
     </nav>
   );
 }
-export function HeaderSection1() {
+function HeaderSection1() {
   return (
     <section
       className="bg-background section-padding-y"
@@ -102,7 +102,7 @@ export function HeaderSection1() {
     </section>
   );
 }
-export function HeroSection1() {
+function HeroSection1() {
   return (
     <section
       className="bg-background section-padding-y"
