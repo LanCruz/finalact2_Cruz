@@ -1,4 +1,4 @@
-"use client";
+
 
 import { Logo } from "~/components/pro-blocks/logo";
 import { Button } from "~/components/ui/button";
@@ -10,6 +10,7 @@ import { ArrowRight } from "lucide-react";
 import { AspectRatio } from "~/components/ui/aspect-ratio";
 import Image from "next/image";
 
+// Menu items for navigation
 const MENU_ITEMS = [
   { label: "Products", href: "#" },
   { label: "Use cases", href: "#" },
@@ -18,11 +19,8 @@ const MENU_ITEMS = [
   { label: "FAQ", href: "#" },
 ] as const;
 
-interface NavMenuItemsProps {
-  className?: string;
-}
-
-const NavMenuItems = ({ className }: NavMenuItemsProps) => (
+// NavMenuItems component for rendering the menu items
+const NavMenuItems = ({ className }: { className?: string }) => (
   <div className={`flex flex-col gap-1 md:flex-row ${className ?? ""}`}>
     {MENU_ITEMS.map(({ label, href }) => (
       <Link key={label} href={href}>
@@ -34,7 +32,9 @@ const NavMenuItems = ({ className }: NavMenuItemsProps) => (
   </div>
 );
 
-function LpNavbar1() {
+// LpNavbar1 component
+const LpNavbar1 = () => {
+  "use client";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
@@ -76,87 +76,69 @@ function LpNavbar1() {
       </div>
     </nav>
   );
-}
-function HeaderSection1() {
-  return (
-    <section
-      className="bg-background section-padding-y"
-      aria-labelledby="page-heading"
-    >
-      <div className="container-padding-x container mx-auto">
-        <div className="section-title-gap-xl mx-auto flex max-w-xl flex-1 flex-col items-center text-center">
-          <div className="section-title-gap-xl flex flex-col items-center">
-            <Tagline>Counter-Strike</Tagline>
-            <h1 id="page-heading" className="heading-xl text-foreground">
-              Headline
-            </h1>
-            <p
-              className="text-muted-foreground text-base lg:text-lg"
-              aria-description="page description"
-            >
-              CHRISTIAN APARIS CHAMPION
-            </p>
-          </div>
+};
+
+// HeaderSection1 component
+const HeaderSection1 = () => (
+  <section className="bg-background section-padding-y" aria-labelledby="page-heading">
+    <div className="container-padding-x container mx-auto">
+      <div className="section-title-gap-xl mx-auto flex max-w-xl flex-1 flex-col items-center text-center">
+        <div className="section-title-gap-xl flex flex-col items-center">
+          <Tagline>Counter-Strike</Tagline>
+          <h1 id="page-heading" className="heading-xl text-foreground">
+            Headline
+          </h1>
+          <p className="text-muted-foreground text-base lg:text-lg" aria-description="page description">
+            CHRISTIAN APARIS CHAMPION
+          </p>
         </div>
       </div>
-    </section>
-  );
-}
-function HeroSection1() {
-  return (
-    <section
-      className="bg-background section-padding-y"
-      aria-labelledby="hero-heading"
-    >
-      <div className="container-padding-x container mx-auto flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
-        {/* Left Column */}
-        <div className="flex flex-1 flex-col gap-6 lg:gap-8">
-          {/* Section Title */}
-          <div className="section-title-gap-xl flex flex-col">
-            {/* Tagline */}
-            <Tagline>Champion Section</Tagline>
-            {/* Main Heading */}
-            <h1 id="hero-heading" className="heading-xl">
-              Learn to be Champ?
-            </h1>
-            {/* Description */}
-            <p className="text-muted-foreground text-base lg:text-lg">
-              Start your journer today and take the steps that turn beginners
-              into champions. Stay focused, stay driven, and become the best
-              version of yourself.
-            </p>
-          </div>
+    </div>
+  </section>
+);
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Button>Get started</Button>
-            <Button variant="ghost">
-              Explore
-              <ArrowRight />
-            </Button>
-          </div>
+// HeroSection1 component
+const HeroSection1 = () => (
+  <section className="bg-background section-padding-y" aria-labelledby="hero-heading">
+    <div className="container-padding-x container mx-auto flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
+      {/* Left Column */}
+      <div className="flex flex-1 flex-col gap-6 lg:gap-8">
+        {/* Section Title */}
+        <div className="section-title-gap-xl flex flex-col">
+          {/* Tagline */}
+          <Tagline>Champion Section</Tagline>
+          {/* Main Heading */}
+          <h1 id="hero-heading" className="heading-xl">
+            Learn to be Champ?
+          </h1>
+          {/* Description */}
+          <p className="text-muted-foreground text-base lg:text-lg">
+            Start your journer today and take the steps that turn beginners into champions. Stay focused, stay driven, and become the best version of yourself.
+          </p>
         </div>
 
-        {/* Right Column */}
-        <div className="w-full flex-1">
-          <AspectRatio ratio={1 / 1}>
-            <Image
-              src="/aparis.PNG"
-              alt="Hero section visual"
-              fill
-              priority
-              className="h-full w-full rounded-xl object-cover"
-            />
-          </AspectRatio>
+        {/* CTA Buttons */}
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <Button>Get started</Button>
+          <Button variant="ghost">
+            Explore
+            <ArrowRight />
+          </Button>
         </div>
       </div>
-    </section>
-  );
-}
 
+      {/* Right Column */}
+      <div className="w-full flex-1">
+        <AspectRatio ratio={1 / 1}>
+          <Image src="/aparis.PNG" alt="Hero section visual" fill priority className="h-full w-full rounded-xl object-cover" />
+        </AspectRatio>
+      </div>
+    </div>
+  </section>
+);
 
-export default function HomePage(){
-  return(
+export default function HomePage() {
+  return (
     <div>
       <LpNavbar1 />
       <HeaderSection1 />
