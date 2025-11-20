@@ -1,14 +1,13 @@
 "use client";
 
-import { Logo } from "~/components/pro-blocks/logo";
-import { Button } from "~/components/ui/button";
-import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
-import { Tagline } from "~/components/pro-blocks/landing-page/tagline";
-import { ArrowRight } from "lucide-react";
-import { AspectRatio } from "~/components/ui/aspect-ratio";
 import Image from "next/image";
+import { Menu, X, ArrowRight } from "lucide-react";
+import { Logo } from "~/components/pro-blocks/logo";
+import { Button } from "~/components/ui/button";
+import { Tagline } from "~/components/pro-blocks/landing-page/tagline";
+import { AspectRatio } from "~/components/ui/aspect-ratio";
 
 // Menu items for navigation
 const MENU_ITEMS = [
@@ -19,23 +18,24 @@ const MENU_ITEMS = [
   { label: "FAQ", href: "#" },
 ] as const;
 
-// NavMenuItems component for rendering the menu items
-const NavMenuItems = ({ className }: { className?: string }) => (
-  <div className={`flex flex-col gap-1 md:flex-row ${className ?? ""}`}>
-    {MENU_ITEMS.map(({ label, href }) => (
-      <Link key={label} href={href}>
-        <Button variant="ghost" className="w-full md:w-auto">
-          {label}
-        </Button>
-      </Link>
-    ))}
-  </div>
-);
+// NavMenuItems component
+function NavMenuItems({ className }: { className?: string }) {
+  return (
+    <div className={`flex flex-col gap-1 md:flex-row ${className ?? ""}`}>
+      {MENU_ITEMS.map(({ label, href }) => (
+        <Link key={label} href={href}>
+          <Button variant="ghost" className="w-full md:w-auto">
+            {label}
+          </Button>
+        </Link>
+      ))}
+    </div>
+  );
+}
 
-// LpNavbar1 component
-const LpNavbar1 = () => {
+// Navbar component
+function LpNavbar1() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   return (
@@ -75,67 +75,73 @@ const LpNavbar1 = () => {
       </div>
     </nav>
   );
-};
+}
 
-// HeaderSection1 component
-const HeaderSection1 = () => (
-  <section className="bg-background section-padding-y" aria-labelledby="page-heading">
-    <div className="container-padding-x container mx-auto">
-      <div className="section-title-gap-xl mx-auto flex max-w-xl flex-1 flex-col items-center text-center">
-        <div className="section-title-gap-xl flex flex-col items-center">
-          <Tagline>Counter-Strike</Tagline>
-          <h1 id="page-heading" className="heading-xl text-foreground">
-            Headline
-          </h1>
-          <p className="text-muted-foreground text-base lg:text-lg" aria-description="page description">
-            CHRISTIAN APARIS CHAMPION
-          </p>
+// Header section component
+function HeaderSection1() {
+  return (
+    <section className="bg-background section-padding-y" aria-labelledby="page-heading">
+      <div className="container-padding-x container mx-auto">
+        <div className="section-title-gap-xl mx-auto flex max-w-xl flex-1 flex-col items-center text-center">
+          <div className="section-title-gap-xl flex flex-col items-center">
+            <Tagline>Counter-Strike</Tagline>
+            <h1 id="page-heading" className="heading-xl text-foreground">
+              Headline
+            </h1>
+            <p className="text-muted-foreground text-base lg:text-lg" aria-description="page description">
+              CHRISTIAN APARIS CHAMPION
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+}
 
-// HeroSection1 component
-const HeroSection1 = () => (
-  <section className="bg-background section-padding-y" aria-labelledby="hero-heading">
-    <div className="container-padding-x container mx-auto flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
-      {/* Left Column */}
-      <div className="flex flex-1 flex-col gap-6 lg:gap-8">
-        {/* Section Title */}
-        <div className="section-title-gap-xl flex flex-col">
-          {/* Tagline */}
-          <Tagline>Champion Section</Tagline>
-          {/* Main Heading */}
-          <h1 id="hero-heading" className="heading-xl">
-            Learn to be Champ?
-          </h1>
-          {/* Description */}
-          <p className="text-muted-foreground text-base lg:text-lg">
-            Start your journer today and take the steps that turn beginners into champions. Stay focused, stay driven, and become the best version of yourself.
-          </p>
+// Hero section component
+function HeroSection1() {
+  return (
+    <section className="bg-background section-padding-y" aria-labelledby="hero-heading">
+      <div className="container-padding-x container mx-auto flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
+        {/* Left Column */}
+        <div className="flex flex-1 flex-col gap-6 lg:gap-8">
+          <div className="section-title-gap-xl flex flex-col">
+            <Tagline>Champion Section</Tagline>
+            <h1 id="hero-heading" className="heading-xl">
+              Learn to be Champ?
+            </h1>
+            <p className="text-muted-foreground text-base lg:text-lg">
+              Start your journey today and take the steps that turn beginners into champions. Stay focused, stay driven, and become the best version of yourself.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Button>Get started</Button>
+            <Button variant="ghost">
+              Explore
+              <ArrowRight />
+            </Button>
+          </div>
         </div>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <Button>Get started</Button>
-          <Button variant="ghost">
-            Explore
-            <ArrowRight />
-          </Button>
+        {/* Right Column */}
+        <div className="w-full flex-1">
+          <AspectRatio ratio={1 / 1}>
+            <Image
+              src="/aparis.PNG"
+              alt="Hero section visual"
+              fill
+              priority
+              className="h-full w-full rounded-xl object-cover"
+            />
+          </AspectRatio>
         </div>
       </div>
+    </section>
+  );
+}
 
-      {/* Right Column */}
-      <div className="w-full flex-1">
-        <AspectRatio ratio={1 / 1}>
-          <Image src="/aparis.PNG" alt="Hero section visual" fill priority className="h-full w-full rounded-xl object-cover" />
-        </AspectRatio>
-      </div>
-    </div>
-  </section>
-);
-
+// Page export
 export default function HomePage() {
   return (
     <div>
