@@ -1,4 +1,4 @@
-
+"use client";
 
 import { Logo } from "~/components/pro-blocks/logo";
 import { Button } from "~/components/ui/button";
@@ -34,7 +34,6 @@ const NavMenuItems = ({ className }: { className?: string }) => (
 
 // LpNavbar1 component
 const LpNavbar1 = () => {
-  "use client";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
